@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
 
         Person pers1 = new Person();
-        pers1.setName("Max");
+        pers1.setName("Maxim");
         pers1.setAge(29);
         pers1.setPosition(Position.DEVELOPER);
 
