@@ -1,55 +1,73 @@
 package com.company;
 
-enum Position {DIRECTOR, DEVELOPER, QA}
-
 public class Person {
 
-    private String name;
-    private int age;
-    final String COMPANY_NAME = "Microsoft";
-    public Position position;
+    private final String firstName;    //required
+    private final String lastName;    //required
+    private final int age;    //optional
+    private final String phone;    //optional
+    private final String address;    //optional
+
+    private Person(Builder builder) {
+        this.firstName = builder.firstName;
+        this.lastName = builder.lastName;
+        this.age = builder.age;
+        this.phone = builder.phone;
+        this.address = builder.address;
 
 
+    }
 
-    public String getName() { return name; }
+    public String getFirstName() {
+        return firstName;
+    }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getLastName() {
+        return lastName;
     }
 
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPosition(Position position) { this.position = position; }
 
-    public Position getPosition() { return this.position; }
+    public static class Builder {
+        private String firstName;
+        private String lastName;
+        private int age;
+        private String phone;
+        private String address;
+
+        public Builder() {
+
+        }
+
+        public Builder(Person original) {
+            this.firstName = original.firstName;
+            this.lastName = original.lastName;
+            this.age = original.age;
+            this.phone = original.phone;
+            this.address = original.address;
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Person)) return false;
+        }
 
-        Person person = (Person) o;
+        public Builder firstName(String firstName) {
+            this.firstName = firstName;
+            return this;
 
-        if (age != person.age) return false;
-        if (!name.equals(person.name)) return false;
-        return COMPANY_NAME.equals(person.COMPANY_NAME);
+        }
 
-    }
+        public Person build() {
+            return new Person(this);
+        }
 
-    @Override
-    public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + age;
-        result = 31 * result + COMPANY_NAME.hashCode();
-        return result;
     }
 }
+
 
 
